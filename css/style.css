@@ -138,7 +138,8 @@ label {
   overflow: hidden;         /* はみ出た部分を非表示に */
   text-overflow: ellipsis;  /* はみ出た部分に「…」を表示（任意） */
   width: 100%;
-  border: 1px solid #ccc;
+  height: 70px;
+  border: 1px soid #ccc;
   border-radius: 8px;
   padding: 10px;
 }
