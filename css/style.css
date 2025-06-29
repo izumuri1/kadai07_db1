@@ -1,0 +1,159 @@
+.montserrat-<uniquifier> {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f8f7f6;
+}
+
+header {
+  background-color: #f4c14e;
+}
+
+h1 {
+  text-align: center;
+  margin: 0;
+  font-size: 28px;
+  font-family: "Montserrat", sans-serif;
+  font-style:italic;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+p {
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+footer {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 12px;
+  padding: 8px;
+  background-color: #f4c14e;
+}
+
+input {
+  width: 100%;
+  padding: 5px;
+  display: block;
+  margin: 0 auto 5px;
+  box-shadow: 3px 1px 1px rgba(128, 128, 128, 0.368);
+  font-size: 16px;
+  font-family: sans-serif;
+  background-color: #cee0f4;;
+  border: 1px solid white;
+}
+
+label {
+  width: 100%;
+  margin: 0 auto 5px;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+.inputBlk{
+  display: flex;
+  justify-content: space-between; /* 両端に適切な余白を確保 */
+  width: 100%;
+}
+
+.inputBlk > div {
+  width: 49%; /* 各要素が画面の半分を占める */
+}
+
+.inputBtn {
+  width: 66%;
+  font-weight: bold;
+  margin: 0 auto;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: black;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  margin: 0; /* 念のため */
+}
+
+.tableSticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  margin: 0; /* 念のため */
+  background-color: white;
+}
+
+.anyIdeas {
+  border-top: bla;
+  margin-top: 10px;
+}
+
+.ourIdeas {
+  border-top: 1px solid white;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.ideasThinking {
+  border-top: 1px solid white;
+  margin-top: 10px;
+  height: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.ideasTried {
+  border-top: 1px solid white;
+  margin-top: 10px;
+  height: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.ourIdeas-wrapper {
+  font-size: 10px;
+  font-family: sans-serif;
+  height: 150px;
+  overflow-y: auto;
+}
+
+table {
+  font-size: 16px;
+  font-family: sans-serif;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate; 
+  background-color: white;
+}
+
+th,td {
+  padding: 3px;
+  border-bottom: thin solid gray;
+}
+
+th {
+  font-weight: normal;
+}
+
+td {
+  white-space: nowrap;      /* 改行せずに1行で表示 */
+  overflow: hidden;         /* はみ出た部分を非表示に */
+  text-overflow: ellipsis;  /* はみ出た部分に「…」を表示（任意） */
+}
