@@ -6,6 +6,7 @@
 }
 
 * {
+  /* widthやheightで指定したサイズにpadding、borderも含めて計算され、見た目のサイズが指定した値ぴったりになる*/
   box-sizing: border-box;
 }
 
@@ -29,7 +30,7 @@ h1 {
 
 h2 {
   font-family: "Montserrat", sans-serif;
-  margin-top: 10px;
+  margin-top: 20px;
   padding-left: 10px;
 }
 
@@ -91,69 +92,69 @@ label {
   margin: 0; /* 念のため */
 }
 
-.tableSticky {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  margin: 0; /* 念のため */
-  background-color: white;
-}
-
 .anyIdeas {
   border-top: bla;
   margin-top: 10px;
 }
 
 .ourIdeas {
-  border-top: 1px solid white;
   margin-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
 }
 
 .ideasThinking {
-  border-top: 1px solid white;
   margin-top: 10px;
-  height: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  height: 200px;
   padding-left: 10px;
   padding-right: 10px;
 }
 
 .ideasTried {
-  border-top: 1px solid white;
   margin-top: 10px;
   height: 100px;
   padding-left: 10px;
   padding-right: 10px;
 }
 
-.ourIdeas-wrapper {
-  font-size: 10px;
-  font-family: sans-serif;
-  height: 150px;
+.ourIdeas-cards {
+  display: flex;
+  flex-wrap: wrap;
   overflow-y: auto;
-}
-
-table {
+  gap: 10px;
   font-size: 16px;
   font-family: sans-serif;
+  height: 200px;
   width: 100%;
-  table-layout: fixed;
-  border-collapse: separate; 
-  background-color: white;
-}
-
-th,td {
   padding: 3px;
-  border-bottom: thin solid gray;
 }
 
-th {
-  font-weight: normal;
-}
-
-td {
+.ideaCard {
+  transition: box-shadow 0.2s;
   white-space: nowrap;      /* 改行せずに1行で表示 */
   overflow: hidden;         /* はみ出た部分を非表示に */
   text-overflow: ellipsis;  /* はみ出た部分に「…」を表示（任意） */
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.ideaCard:active, .ideaCard:focus {
+  box-shadow: 0 0 10px #aaa;
+}
+
+.ourIdeas-cards .ideaCard {
+  background: #fff;
+  box-shadow: 2px 2px 6px #eee;
+  cursor: grab;
+}
+
+.ideasThinking .ideaCard {
+  background: rgb(247, 238, 216);
+  box-shadow: 2px 2px 6px #eee;
+  margin: 5px 0;
 }

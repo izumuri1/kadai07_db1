@@ -14,30 +14,75 @@ async function fetchIdeas() {
         }
 
         const data = await response.json();
-        // クラス名がourIdeasのDOM要素を取得し、ourIdeasに代入➡ourIdeas.innerHTML = html;で動的に生成したhtmlをourIdeasに代入する
+        // カード群を表示するための場所として、ourIdeasにDOM要素（ourIdeas）を代入する
         const ourIdeas = document.querySelector('.ourIdeas');
-        let html = '<div class="ourIdeas-wrapper">';
-        // dataに中身があれば、処理する
-        if (data.length > 0) {
-            html += '<table class="ourIdeas-table">';
-            html += '<thead><tr><th class="tableSticky">いつ</th><th class="tableSticky">誰と</th><th class="tableSticky">何をしたい</th></tr></thead>';
-            html += '<tbody>';
-            // dataの各要素を仮引数のentryとして、繰り返し処理
-            data.forEach(entry => {
-                // テンプレートリテラル（`・・・`）を活用
-                html += `<tr class="ourIdeasTr">
-                    <td>${entry.whenToDo}</td>
-                    <td>${entry.whoWith}</td>
-                    <td>${entry.whatToDo}</td>
-                </tr>`;
-            });
-            html += '</tbody></table>';
-        } else {
-            html += '<p>登録データがありません</p>';
-        }
+        // ourIdeas要素の中身を置き換えるためのhtml変数を設定
+        let html = '<div class="ourIdeas-cards">';
+        // ループ変数entryを使って、dataを繰り返し処理
+        data.forEach((entry, idx) => {
+            // テンプレートリテラルで簡単に文字列と変数などを連結
+            // カスタムデータ属性：data-〇〇="値" という形で、任意のデータをHTML要素に持たせることができる
+            // ドラッグ＆ドロップやクリックなどのイベント時に、「どのデータか」を特定するためによく使う
+
+            html += `
+                <div class="ideaCard"
+                    draggable="true"
+                    data-index="${idx}"
+                    >
+                <div>いつ: ${entry.whenToDo}</div>
+                <div>誰と: ${entry.whoWith}</div>
+                <div>何を: ${entry.whatToDo}</div>
+                </div>
+            `;
+        });
         html += '</div>';
-        // ourIdeas要素のHTMLを、構築した文字列で置き換え
+        // ourIdeas要素の中身を、html変数に入っているHTMLにまるごと置き換える
         ourIdeas.innerHTML = html;
+
+        // ideaCardの要素全てを取得し、cardsに代入する（カード全体を扱いやすくする）
+        const cards = document.querySelectorAll('.ideaCard');
+        const dropArea = document.querySelector('.ideasThinking');
+
+        // ◆◆◆PC用ドラッグ&ドロップ
+        cards.forEach(card => {
+        // カードがドラッグされたら、ドロップ先で正しく処理するため、このカードは何番目か（data-index）という情報をドラッグデータとしてセットする
+        card.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', card.dataset.index);
+            // ドラッグして移動中と分かるよう透明化
+            card.style.opacity = '0.4';
+        });
+        // ドラッグ操作が終わった時の処理
+        card.addEventListener('dragend', (e) => {
+            card.style.opacity = '';
+            });
+        });
+
+        // ドロップエリアにカードが載っている時の処理
+        dropArea.addEventListener('dragover', (e) => {
+            // デフォルト動作（ドロップ禁止）をキャンセルし、ドロップを可能とする
+            e.preventDefault();
+            dropArea.style.background = '#eef';
+        });
+            // ドロップエリアからドラッグ中の要素が離れた時の処理
+            dropArea.addEventListener('dragleave', (e) => {
+            dropArea.style.background = '';
+        });
+        // ドロップエリアにカードがドロップされた時の処理
+        dropArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropArea.style.background = '';
+            // ドラッグ元でセットしたdata-index（何番目のカードか）を取得する
+            const idx = e.dataTransfer.getData('text/plain');
+            // data配列から該当するデータ（カードの内容）を取得する
+            const entry = data[idx];
+            dropArea.innerHTML += `
+                <div class="ideaCard">
+                    <div>いつ: ${entry.whenToDo}</div>
+                    <div>誰と: ${entry.whoWith}</div>
+                    <div>何を: ${entry.whatToDo}</div>
+                </div>
+            `;
+        });
 
     } catch (error) {
         console.error('Error:', error);

@@ -6,6 +6,11 @@ DB接続: db_conn()
 ********************************************************************************************/
 function db_conn(){
     // configを呼び出すおまじない
+
+    // ★本番用：絶対パス表示
+    // $config = require('/home/izumuri/.php.config/db_config.php');
+
+    // ★ローカルホスト用：相対パス表示
     $config = require(__DIR__ . '/config/db_config.php');
 
     try {
