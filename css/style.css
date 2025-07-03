@@ -139,7 +139,7 @@ label {
   text-overflow: ellipsis;  /* はみ出た部分に「…」を表示（任意） */
   width: 100%;
   height: 70px;
-  border: 1px soid #ccc;
+  border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
 }
